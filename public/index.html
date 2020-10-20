@@ -196,10 +196,20 @@
 
         <div class="bottom-imgs">
             <div><img src="./people.jpeg" alt=""></div>
-            <div><img src="people2.jpg" alt=""></div>
+            <div><img src="./people2.jpg" alt=""></div>
             <div><img src="./10246378_653018838085043_544116973148530698_n.jpg" alt=""></div>
         </div>
-
+        <div class="message">
+            <h1>Any Query/Message/Question</h1>
+            <div >
+                <textarea name="" id="text" cols="30" rows="5"></textarea>
+                <div>
+                    <button  onclick="sendToDB()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
 
     </div>
     <div class="footer m-0"> 
@@ -228,5 +238,33 @@
             <p><i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>        </p>
         </div>
     </div>
+    <script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+    </script>
+    <script>
+
+        const textID = document.getElementById("text")
+        function sendToDB(){
+            const text = textID.value
+            
+            // $.post("http://localhost:5000/post",
+            $.ajax({
+                url: "/post",
+                type: "POST",
+                // dataType : "json",
+                // contentType: "application/json",
+                data: { msg: text },
+                cache: false,
+                success: function(data){
+                    alert(data);
+                }
+            })
+            textID.value = ""
+
+            // alert(text)
+        }
+    </script>
 </body>
 </html>
